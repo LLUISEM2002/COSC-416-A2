@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+[RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
 private bool isBallLaunched;
@@ -16,6 +17,7 @@ void Start(){
     transform.parent = ballAnchor;
     transform.localPosition = Vector3.zero;
     ballRB.isKinematic = true;
+    ResetBall();
 }
 
 
@@ -28,4 +30,14 @@ private void LaunchBall(){
     launchIndicator.gameObject.SetActive(false);
 
 }
- }
+public void ResetBall()
+{
+isBallLaunched = false;
+//We are setting the ball to be a Kinematic Body
+ballRB.isKinematic = true;
+launchIndicator.gameObject.SetActive(true);
+transform.parent = ballAnchor;
+transform.localPosition = Vector3.zero;
+}
+
+}
